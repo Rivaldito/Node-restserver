@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
 const bcrypt = require('bcrypt');
 const _ = require('underscore');
+const v = require('../middleware/autenticacion')
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -12,7 +13,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.get('/usuario', function(req, res) {
+app.get('/usuario', v.verificaToken, function(req, res) {
 
     let desde = req.query.desde || 0;
     desde = Number(desde);
@@ -43,7 +44,7 @@ app.get('/usuario', function(req, res) {
 
 });
 
-app.post('/usuario', (req, res) => {
+app.post('/usuario', [v.verificaToken, v.VerificaAdmin_Role], (req, res) => {
 
     let body = req.body;
 
@@ -88,7 +89,7 @@ app.post('/usuario', (req, res) => {
 
 });
 
-app.delete('/usuario/:id', function(req, res) {
+app.delete('/usuario/:id', [v.verificaToken, v.VerificaAdmin_Role], function(req, res) {
 
 
     let id = req.params.id;
@@ -151,7 +152,7 @@ app.delete('/usuario/:id', function(req, res) {
 */
 });
 
-app.put('/usuario/:id', function(req, res) {
+app.put('/usuario/:id', [v.verificaToken, v.VerificaAdmin_Role], function(req, res) {
 
     let id = req.params.id;
     let body = _.pick(req.body, ['email', 'role', 'nombre', 'img']);

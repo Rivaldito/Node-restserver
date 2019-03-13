@@ -25,4 +25,20 @@ if (process.env.NODE_ENV === 'dev') {
     urlDB = process.env.MONGO_URI;
 }
 
+//===========================
+//heroku congig/set
+//===========================
+
 process.env.URLDB = urlDB;
+
+//===========================
+//Semilla
+//===========================
+
+process.env.SEED = process.env.SEED || 'la-semilla'
+
+//===========================
+//time-token
+//===========================
+
+process.env.TIME_TOKEN = 60 * 60 * 24 * 30;
