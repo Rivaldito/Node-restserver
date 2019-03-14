@@ -42,3 +42,10 @@ process.env.SEED = process.env.SEED || 'la-semilla'
 //===========================
 
 process.env.TIME_TOKEN = 60 * 60 * 24 * 30;
+
+
+//===========================
+//Google Client ID
+//===========================
+
+process.env.CLIENT_ID = process.env.CLIENT_ID || '220316675192-08tusfo6ldpj35cl8eu2osq9ckputsst.apps.googleusercontent.com'
