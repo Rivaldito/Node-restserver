@@ -41,7 +41,7 @@ process.env.SEED = process.env.SEED || 'la-semilla'
 //time-token
 //===========================
 
-process.env.TIME_TOKEN = 60 * 60 * 24 * 30;
+process.env.TIME_TOKEN = '48h';
 
 
 //===========================
